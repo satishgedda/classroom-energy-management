@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alerts · Classroom Energy Management System</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/responsive.css">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body>
+<div class="app-shell">
+
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-mark"><i data-lucide="zap"></i></div>
+      <div class="brand-text"><div class="brand-name">ECS</div><div class="brand-sub">CLASSROOM ENERGY SYSTEM</div></div>
+    </div>
+    <button class="sidebar-collapse-btn" id="sidebarCollapseBtn"><i data-lucide="chevron-left"></i></button>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">MENU</div>
+      <a class="nav-item" data-page="index.html" href="index.html"><i data-lucide="layout-dashboard"></i><span class="nav-label">Dashboard</span></a>
+      <a class="nav-item" data-page="classrooms.html" href="classrooms.html"><i data-lucide="door-open"></i><span class="nav-label">Classrooms</span></a>
+      <a class="nav-item" data-page="analytics.html" href="analytics.html"><i data-lucide="bar-chart-3"></i><span class="nav-label">Energy Analytics</span></a>
+      <a class="nav-item" data-page="alerts.html" href="alerts.html"><i data-lucide="bell-ring"></i><span class="nav-label">Alerts</span></a>
+      <a class="nav-item" data-page="settings.html" href="settings.html"><i data-lucide="settings"></i><span class="nav-label">Settings</span></a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="status-row"><span class="pulse-dot"></span><span class="status-text">All systems operational</span></div>
+      <div class="user-row"><div class="avatar" data-user-avatar>AD</div><div class="user-meta"><div class="user-name">Admin</div><div class="user-role">System Administrator</div></div></div>
+    </div>
+  </aside>
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+
+  <div class="main">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger" id="hamburgerBtn"><i data-lucide="menu"></i></button>
+        <div class="topbar-title-block"><div class="page-title">Alerts</div><div class="breadcrumb">ECS <span>/</span> Alerts</div></div>
+      </div>
+      <div class="topbar-right">
+        <div class="status-chip"><span class="pulse-dot" style="background:#116430"></span>All systems operational</div>
+        <div class="topbar-user"><div class="avatar" data-user-avatar>AD</div><div class="topbar-user-meta"><div class="name">Admin</div><div class="role">System Administrator</div></div></div>
+      </div>
+    </header>
+
+    <main class="page">
+      <div class="page-header">
+        <div><h1>Alert Center</h1><p>Temperature, energy and system alerts across all classrooms.</p></div>
+      </div>
+
+      <div class="alert-tabs">
+        <button class="active" data-tab="all">All <span class="count" id="countAll">0</span></button>
+        <button data-tab="critical">Critical <span class="count" id="countCritical">0</span></button>
+        <button data-tab="warning">Warning <span class="count" id="countWarning">0</span></button>
+        <button data-tab="info">Information <span class="count" id="countInfo">0</span></button>
+      </div>
+
+      <div id="alertList"></div>
+
+      <div class="empty-state" id="alertEmptyState" style="display:none">
+        <div class="empty-ico"><i data-lucide="bell-off"></i></div>
+        <h4>No alerts</h4>
+        <p>You're all caught up — nothing needs your attention in this category.</p>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script src="js/alerts.js"></script>
+</body>
+</html>

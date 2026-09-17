@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Settings · Classroom Energy Management System</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/responsive.css">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body>
+<div class="app-shell">
+
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-mark"><i data-lucide="zap"></i></div>
+      <div class="brand-text"><div class="brand-name">ECS</div><div class="brand-sub">CLASSROOM ENERGY SYSTEM</div></div>
+    </div>
+    <button class="sidebar-collapse-btn" id="sidebarCollapseBtn"><i data-lucide="chevron-left"></i></button>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">MENU</div>
+      <a class="nav-item" data-page="index.html" href="index.html"><i data-lucide="layout-dashboard"></i><span class="nav-label">Dashboard</span></a>
+      <a class="nav-item" data-page="classrooms.html" href="classrooms.html"><i data-lucide="door-open"></i><span class="nav-label">Classrooms</span></a>
+      <a class="nav-item" data-page="analytics.html" href="analytics.html"><i data-lucide="bar-chart-3"></i><span class="nav-label">Energy Analytics</span></a>
+      <a class="nav-item" data-page="alerts.html" href="alerts.html"><i data-lucide="bell-ring"></i><span class="nav-label">Alerts</span></a>
+      <a class="nav-item" data-page="settings.html" href="settings.html"><i data-lucide="settings"></i><span class="nav-label">Settings</span></a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="status-row"><span class="pulse-dot"></span><span class="status-text">All systems operational</span></div>
+      <div class="user-row"><div class="avatar" data-user-avatar>AD</div><div class="user-meta"><div class="user-name">Admin</div><div class="user-role">System Administrator</div></div>
+        <button class="btn btn-ghost btn-sm" style="margin-top:10px;width:100%" onclick="ecsLogout()"><i data-lucide="log-out"></i>Logout</button>
+      </div>
+    </div>
+  </aside>
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+
+  <div class="main">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger" id="hamburgerBtn"><i data-lucide="menu"></i></button>
+        <div class="topbar-title-block"><div class="page-title">Settings</div><div class="breadcrumb">ECS <span>/</span> Settings</div></div>
+      </div>
+      <div class="topbar-right">
+        <div class="topbar-user"><div class="avatar" data-user-avatar>AD</div><div class="topbar-user-meta"><div class="name">Admin</div><div class="role">System Administrator</div></div></div>
+      </div>
+    </header>
+
+    <main class="page">
+      <div class="page-header"><div><h1>Settings</h1><p>Configure automation rules, energy cost and notification behavior.</p></div></div>
+
+      <div class="settings-layout">
+        <nav class="settings-nav">
+          <button class="active" data-target="secAutomation">Automation</button>
+          <button data-target="secEnergy">Energy</button>
+          <button data-target="secNotifications">Notifications</button>
+          <button data-target="secSystem">System</button>
+        </nav>
+
+        <div>
+          <div class="card card-pad settings-section" id="secAutomation">
+            <div class="section-head" style="margin-bottom:4px"><h2>Automation Settings</h2></div>
+            <div class="settings-row"><div class="settings-row-text"><b>Automatic Light Control</b><span>Turn lights on/off based on occupancy and ambient light</span></div><label class="switch"><input type="checkbox" id="autoLight"><span class="track"></span></label></div>
+            <div class="settings-row"><div class="settings-row-text"><b>Automatic Fan Control</b><span>Turn fans on/off based on occupancy and temperature</span></div><label class="switch"><input type="checkbox" id="autoFan"><span class="track"></span></label></div>
+            <div class="settings-row"><div class="settings-row-text"><b>Auto Shutdown When Empty</b><span>Power down all appliances after a room is vacated</span></div><label class="switch"><input type="checkbox" id="autoShutdown"><span class="track"></span></label></div>
+            <div class="settings-row"><div class="settings-row-text"><b>Temperature Threshold</b><span>Trigger cooling / alerts above this temperature</span></div><input type="number" class="num-input" id="tempThreshold"><span style="margin-left:6px;color:var(--ink-500);font-size:12px">°C</span></div>
+            <div class="settings-row"><div class="settings-row-text"><b>Light Threshold</b><span>Minimum ambient light before lights auto-activate</span></div><input type="number" class="num-input" id="lightThreshold"><span style="margin-left:6px;color:var(--ink-500);font-size:12px">%</span></div>
+          </div>
+
+          <div class="card card-pad settings-section" id="secEnergy" style="display:none">
+            <div class="section-head" style="margin-bottom:4px"><h2>Energy Settings</h2></div>
+            <div class="settings-row"><div class="settings-row-text"><b>Electricity Cost</b><span>Used to estimate cost figures across the dashboard</span></div><input type="number" step="0.01" class="num-input" id="costPerUnit"><span style="margin-left:6px;color:var(--ink-500);font-size:12px">₹/kWh</span></div>
+          </div>
+
+          <div class="card card-pad settings-section" id="secNotifications" style="display:none">
+            <div class="section-head" style="margin-bottom:4px"><h2>Notification Settings</h2></div>
+            <div class="settings-row"><div class="settings-row-text"><b>High Energy Alert</b><span>Notify when a classroom exceeds its average usage</span></div><label class="switch"><input type="checkbox" id="alertHighEnergy"><span class="track"></span></label></div>
+            <div class="settings-row"><div class="settings-row-text"><b>Temperature Alert</b><span>Notify when a classroom crosses the temperature threshold</span></div><label class="switch"><input type="checkbox" id="alertTemp"><span class="track"></span></label></div>
+          </div>
+
+          <div class="card card-pad settings-section" id="secSystem" style="display:none">
+            <div class="section-head" style="margin-bottom:4px"><h2>System Settings</h2></div>
+            <div class="settings-row"><div class="settings-row-text"><b>Simulation Mode</b><span>Serve simulated sensor data instead of a live ESP32 feed</span></div><label class="switch"><input type="checkbox" id="simulationMode"><span class="track"></span></label></div>
+          </div>
+
+          <div class="save-bar">
+            <button class="btn btn-accent" id="saveSettingsBtn"><i data-lucide="save"></i>Save Settings</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script src="js/settings.js"></script>
+</body>
+</html>

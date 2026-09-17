@@ -1,0 +1,56 @@
+/* =========================================================
+   ECS — Responsive rules
+   ========================================================= */
+
+/* ---- Laptop / small desktop ---- */
+@media (max-width:1280px){
+  .kpi-grid{grid-template-columns:repeat(3,1fr)}
+  .sensor-grid{grid-template-columns:repeat(3,1fr)}
+  .classroom-grid{grid-template-columns:repeat(3,1fr)}
+  .split-2{grid-template-columns:1fr}
+  .automation-body{grid-template-columns:1fr}
+  .analytics-grid{grid-template-columns:1fr}
+}
+
+/* ---- Tablet ---- */
+@media (max-width:1024px){
+  :root{--sidebar-w:78px}
+  .brand-text,.nav-item .nav-label,.nav-section-label,.status-row .status-text,.user-meta{display:none}
+  .nav-item{justify-content:center}
+  .sidebar-collapse-btn{display:none}
+  .kpi-grid{grid-template-columns:repeat(2,1fr)}
+  .settings-layout{grid-template-columns:1fr}
+  .settings-nav{position:static;flex-direction:row;overflow-x:auto;padding-bottom:4px}
+}
+
+/* ---- Mobile ---- */
+@media (max-width:768px){
+  .hamburger{display:flex}
+  .sidebar{
+    width:250px!important;
+    transform:translateX(-100%);
+  }
+  .sidebar.drawer-open{transform:translateX(0)}
+  .sidebar .brand-text,.sidebar .nav-item .nav-label,.sidebar .nav-section-label,.sidebar .status-row .status-text,.sidebar .user-meta{display:block!important}
+  .sidebar .nav-item{justify-content:flex-start}
+  .main{margin-left:0!important}
+  .app-shell.collapsed .main{margin-left:0}
+  .page{padding:18px 16px 50px}
+  .page-header{flex-direction:column;align-items:flex-start}
+  .kpi-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .sensor-grid{grid-template-columns:1fr 1fr}
+  .classroom-grid{grid-template-columns:1fr}
+  .appliance-grid{grid-template-columns:1fr}
+  .metric-tiles{grid-template-columns:1fr 1fr}
+  .filter-bar{flex-direction:column;align-items:stretch}
+  .topbar{padding:0 14px}
+  .topbar-title-block .breadcrumb{display:none}
+  .login-box{padding:0 4px}
+  .automation-panel{padding:20px}
+}
+
+@media (max-width:480px){
+  .kpi-grid{grid-template-columns:1fr}
+  .sensor-grid{grid-template-columns:1fr}
+  .metric-tiles{grid-template-columns:1fr}
+}

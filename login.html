@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign in · Classroom Energy Management System</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body>
+<div class="login-wrap">
+  <div class="login-visual">
+    <div class="grid-lines"></div>
+    <div class="sidebar-brand" style="padding:0;border:none;position:relative">
+      <div class="brand-mark"><i data-lucide="zap"></i></div>
+      <div class="brand-text"><div class="brand-name">ECS</div><div class="brand-sub">CLASSROOM ENERGY SYSTEM</div></div>
+    </div>
+    <p class="login-quote">Every classroom, <span>monitored and optimized</span> — occupancy, temperature and light working together to cut waste automatically.</p>
+    <div class="login-stats">
+      <div><b>12</b><span>Classrooms connected</span></div>
+      <div><b>18.4%</b><span>Average energy saved</span></div>
+      <div><b>24/7</b><span>Live monitoring</span></div>
+    </div>
+  </div>
+
+  <div class="login-form-side">
+    <div class="login-box">
+      <div class="brand-mark"><i data-lucide="zap"></i></div>
+      <h2>Sign in to ECS</h2>
+      <p class="lede">Classroom Energy Management System — this is a frontend prototype for demonstration purposes.</p>
+
+      <div class="login-error" id="loginError">Incorrect email or password. Use the demo credentials below.</div>
+
+      <form id="loginForm" novalidate>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="admin@ecs.com" value="admin@ecs.com" autocomplete="username">
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="••••••••" value="admin123" autocomplete="current-password">
+        </div>
+        <div class="field-row">
+          <label class="checkbox-row"><input type="checkbox" id="remember" checked> Remember me</label>
+          <a href="#" style="color:var(--cyan-600);font-weight:600">Forgot password?</a>
+        </div>
+        <button type="submit" class="btn btn-accent btn-block">Login <i data-lucide="arrow-right"></i></button>
+      </form>
+
+      <div class="demo-creds">
+        Demo credentials — Email: <b>admin@ecs.com</b> · Password: <b>admin123</b>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/app.js"></script>
+<script>
+  lucide.createIcons();
+  document.getElementById('loginForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const email = document.getElementById('email').value.trim();
+    const pass = document.getElementById('password').value.trim();
+    const err = document.getElementById('loginError');
+    if(email === 'admin@ecs.com' && pass === 'admin123'){
+      localStorage.setItem('ecs_auth', 'true');
+      location.href = 'index.html';
+    } else {
+      err.style.display = 'flex';
+    }
+  });
+</script>
+</body>
+</html>

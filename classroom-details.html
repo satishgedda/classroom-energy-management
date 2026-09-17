@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Classroom Details · Classroom Energy Management System</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/responsive.css">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body>
+<div class="app-shell">
+
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-mark"><i data-lucide="zap"></i></div>
+      <div class="brand-text"><div class="brand-name">ECS</div><div class="brand-sub">CLASSROOM ENERGY SYSTEM</div></div>
+    </div>
+    <button class="sidebar-collapse-btn" id="sidebarCollapseBtn"><i data-lucide="chevron-left"></i></button>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">MENU</div>
+      <a class="nav-item" data-page="index.html" href="index.html"><i data-lucide="layout-dashboard"></i><span class="nav-label">Dashboard</span></a>
+      <a class="nav-item active" data-page="classrooms.html" href="classrooms.html"><i data-lucide="door-open"></i><span class="nav-label">Classrooms</span></a>
+      <a class="nav-item" data-page="analytics.html" href="analytics.html"><i data-lucide="bar-chart-3"></i><span class="nav-label">Energy Analytics</span></a>
+      <a class="nav-item" data-page="alerts.html" href="alerts.html"><i data-lucide="bell-ring"></i><span class="nav-label">Alerts</span></a>
+      <a class="nav-item" data-page="settings.html" href="settings.html"><i data-lucide="settings"></i><span class="nav-label">Settings</span></a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="status-row"><span class="pulse-dot"></span><span class="status-text">All systems operational</span></div>
+      <div class="user-row"><div class="avatar" data-user-avatar>AD</div><div class="user-meta"><div class="user-name">Admin</div><div class="user-role">System Administrator</div></div></div>
+    </div>
+  </aside>
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+
+  <div class="main">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger" id="hamburgerBtn"><i data-lucide="menu"></i></button>
+        <div class="topbar-title-block"><div class="page-title" id="roomTitle">Classroom</div><div class="breadcrumb">ECS <span>/</span> Classrooms <span>/</span> …</div></div>
+      </div>
+      <div class="topbar-right">
+        <a class="btn btn-ghost btn-sm" href="classrooms.html"><i data-lucide="arrow-left"></i>Back</a>
+        <div class="topbar-user"><div class="avatar" data-user-avatar>AD</div><div class="topbar-user-meta"><div class="name">Admin</div><div class="role">System Administrator</div></div></div>
+      </div>
+    </header>
+
+    <main class="page">
+      <div id="roomNotFound" class="empty-state" style="display:none">
+        <div class="empty-ico"><i data-lucide="search-x"></i></div>
+        <h4>Classroom not found</h4>
+        <p>We couldn't find that classroom ID. It may have been renamed or removed.</p>
+        <a class="btn btn-primary" style="margin-top:14px" href="classrooms.html">Back to classrooms</a>
+      </div>
+
+      <div id="roomContent">
+        <div class="page-header">
+          <div>
+            <h1 id="roomSubtitleH1" style="display:none"></h1>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:2px">
+              <span class="badge badge-green" id="roomStatusBadge">—</span>
+            </div>
+            <p id="roomSubtitle">—</p>
+          </div>
+          <div class="header-meta">
+            <div class="meta-item"><i data-lucide="wallet"></i>Estimated cost today: <b class="mono" id="estCostVal">—</b></div>
+          </div>
+        </div>
+
+        <div class="metric-tiles" id="metricTiles"></div>
+
+        <div class="split-2">
+          <div class="card card-pad">
+            <div class="section-head" style="margin-bottom:16px"><h2>Appliance Control</h2><div class="sub">Toggles update power draw and today's energy total live</div></div>
+            <div class="appliance-grid" id="applianceGrid"></div>
+          </div>
+          <div class="card card-pad">
+            <div class="section-head" style="margin-bottom:16px"><h2>Sensors</h2></div>
+            <div class="sensor-grid" id="detailSensorGrid" style="grid-template-columns:1fr 1fr"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script src="js/classroom-details.js"></script>
+</body>
+</html>

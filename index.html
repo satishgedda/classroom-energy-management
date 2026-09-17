@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard · Classroom Energy Management System</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/responsive.css">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body>
+<div class="app-shell">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-mark"><i data-lucide="zap"></i></div>
+      <div class="brand-text">
+        <div class="brand-name">ECS</div>
+        <div class="brand-sub">CLASSROOM ENERGY SYSTEM</div>
+      </div>
+    </div>
+    <button class="sidebar-collapse-btn" id="sidebarCollapseBtn"><i data-lucide="chevron-left"></i></button>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">MENU</div>
+      <a class="nav-item" data-page="index.html" href="index.html"><i data-lucide="layout-dashboard"></i><span class="nav-label">Dashboard</span></a>
+      <a class="nav-item" data-page="classrooms.html" href="classrooms.html"><i data-lucide="door-open"></i><span class="nav-label">Classrooms</span></a>
+      <a class="nav-item" data-page="analytics.html" href="analytics.html"><i data-lucide="bar-chart-3"></i><span class="nav-label">Energy Analytics</span></a>
+      <a class="nav-item" data-page="alerts.html" href="alerts.html"><i data-lucide="bell-ring"></i><span class="nav-label">Alerts</span></a>
+      <a class="nav-item" data-page="settings.html" href="settings.html"><i data-lucide="settings"></i><span class="nav-label">Settings</span></a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="status-row"><span class="pulse-dot"></span><span class="status-text">All systems operational</span></div>
+      <div class="user-row">
+        <div class="avatar" data-user-avatar>AD</div>
+        <div class="user-meta">
+          <div class="user-name">Admin</div>
+          <div class="user-role">System Administrator</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+
+  <!-- ============ MAIN ============ -->
+  <div class="main">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger" id="hamburgerBtn"><i data-lucide="menu"></i></button>
+        <div class="topbar-title-block">
+          <div class="page-title">Dashboard</div>
+          <div class="breadcrumb">ECS <span>/</span> Dashboard</div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <button class="icon-btn"><i data-lucide="search"></i></button>
+        <div class="panel-anchor">
+          <button class="icon-btn" id="notifBtn"><i data-lucide="bell"></i><span class="badge-dot"></span></button>
+          <div class="dropdown-panel" id="notifPanel">
+            <div class="dropdown-head"><h4>Notifications</h4><span>Mark all read</span></div>
+            <div class="dropdown-list">
+              <div class="notif-item"><span class="notif-ico" style="background:var(--red-100);color:var(--red-500)"><i data-lucide="thermometer"></i></span><div class="notif-body"><p>High temperature in A-103</p><span>8 min ago</span></div></div>
+              <div class="notif-item"><span class="notif-ico" style="background:var(--amber-100);color:var(--amber-500)"><i data-lucide="zap"></i></span><div class="notif-body"><p>B-204 energy usage above average</p><span>26 min ago</span></div></div>
+              <div class="notif-item"><span class="notif-ico" style="background:#e0f6fd;color:#036187"><i data-lucide="check-circle"></i></span><div class="notif-body"><p>Automation rule executed in Block B</p><span>2 hr ago</span></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="status-chip"><span class="pulse-dot" style="background:#116430"></span>All systems operational</div>
+        <div class="topbar-user">
+          <div class="avatar" data-user-avatar>AD</div>
+          <div class="topbar-user-meta"><div class="name">Admin</div><div class="role">System Administrator</div></div>
+        </div>
+      </div>
+    </header>
+
+    <main class="page">
+      <div class="demo-ribbon"><i data-lucide="flask-conical"></i> DEMO MODE <span class="dim">— all readings are simulated IoT data for this prototype</span></div>
+
+      <div class="page-header">
+        <div>
+          <h1>Good Morning, Admin</h1>
+          <p>Monitor and optimize classroom energy in real time.</p>
+        </div>
+        <div class="header-meta">
+          <div class="meta-item"><i data-lucide="calendar"></i><span id="liveClock">—</span></div>
+          <div class="meta-item"><i data-lucide="refresh-cw"></i><span id="lastUpdated">Last updated —</span></div>
+        </div>
+      </div>
+
+      <!-- KPI cards -->
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-top"><div class="kpi-ico navy"><i data-lucide="building-2"></i></div></div>
+          <div class="kpi-value" id="kpiTotalClassrooms">—</div>
+          <div class="kpi-label">Total Classrooms</div>
+          <div class="kpi-trend neutral"><i data-lucide="minus"></i>Stable</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-top"><div class="kpi-ico green"><i data-lucide="users"></i></div></div>
+          <div class="kpi-value" id="kpiOccupied">—</div>
+          <div class="kpi-label">Occupied Now</div>
+          <div class="kpi-trend up"><i data-lucide="arrow-up-right"></i>2 <span class="vs">vs last hour</span></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-top"><div class="kpi-ico blue"><i data-lucide="activity"></i></div></div>
+          <div class="kpi-value" id="kpiEnergy">—</div>
+          <div class="kpi-label">Energy Today</div>
+          <div class="kpi-trend down"><i data-lucide="arrow-down-right"></i>12.4% <span class="vs">vs yesterday</span></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-top"><div class="kpi-ico amber"><i data-lucide="wallet"></i></div></div>
+          <div class="kpi-value" id="kpiCost">—</div>
+          <div class="kpi-label">Estimated Cost</div>
+          <div class="kpi-trend neutral"><i data-lucide="minus"></i>Simulated</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-top"><div class="kpi-ico cyan"><i data-lucide="leaf"></i></div></div>
+          <div class="kpi-value" id="kpiSaved">—</div>
+          <div class="kpi-label">Energy Saved</div>
+          <div class="kpi-trend up"><i data-lucide="arrow-up-right"></i>3.1% <span class="vs">vs last week</span></div>
+        </div>
+      </div>
+
+      <div class="split-2">
+        <div class="card chart-card">
+          <div class="card-head">
+            <div><h3>Real-Time Energy Consumption</h3><div class="sub">Peak <b class="mono" id="chartPeakVal">—</b> · Average <b class="mono" id="chartAvgVal">—</b></div></div>
+            <div class="chart-controls">
+              <button class="active" data-range="today">Today</button>
+              <button data-range="week">Week</button>
+              <button data-range="month">Month</button>
+            </div>
+          </div>
+          <div class="chart-canvas-wrap">
+            <div class="chart-glow"></div>
+            <canvas id="energyChart" height="90"></canvas>
+          </div>
+          <div class="chart-legend">
+            <span><i class="legend-dot" style="background:#0ea5e9"></i>Consumption</span>
+            <span><i class="legend-dot" style="background:#c7ceda"></i>Average reference</span>
+          </div>
+        </div>
+
+        <div class="card card-pad">
+          <div class="section-head" style="margin-bottom:16px"><h2>Sensor Monitoring</h2></div>
+          <div class="sub" style="margin-top:-10px;margin-bottom:14px;font-size:12px;color:var(--ink-500)">Live feed · A-101, Computer Science</div>
+          <div class="sensor-grid" id="sensorFeed" style="grid-template-columns:1fr 1fr;gap:12px"></div>
+        </div>
+      </div>
+
+      <!-- Automation demo -->
+      <section class="automation-panel">
+        <div class="automation-head">
+          <div>
+            <h2>Smart Automation</h2>
+            <p>The system automatically controls classroom appliances based on occupancy, temperature and ambient light — no manual switches required. Try it live on classroom A-102 below.</p>
+          </div>
+          <span class="badge badge-cyan" style="background:rgba(34,211,238,.16);color:#7fe3f5">Live Simulation · A-102</span>
+        </div>
+        <div class="automation-body">
+          <div class="sim-controls">
+            <div style="font-size:11.5px;color:var(--ink-on-dark-muted);margin-bottom:2px">Occupancy Simulation</div>
+            <button class="sim-btn occupied-btn" id="occBtn"><i data-lucide="user-check"></i>Person Detected</button>
+            <button class="sim-btn empty-btn" id="emptyBtn"><i data-lucide="user-x"></i>Classroom Empty</button>
+          </div>
+          <div class="sim-state">
+            <div class="sim-state-head"><span class="label">A-102 · Live State</span><span class="sim-status-badge" id="simStatusBadge">—</span></div>
+            <div class="sim-rows">
+              <div class="sim-row"><span>Ceiling Light</span><span id="simLight">—</span></div>
+              <div class="sim-row"><span>Exhaust Fan</span><span id="simFan">—</span></div>
+            </div>
+            <div class="exec-msg" id="execMsg"><i data-lucide="check-circle-2"></i>Automation rule executed successfully</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Live classroom status -->
+      <div class="section-head">
+        <div>
+          <h2>Live Classroom Status</h2>
+          <div class="sub">Real-time occupancy and appliance state across campus</div>
+        </div>
+        <a class="link" href="classrooms.html">View all classrooms <i data-lucide="arrow-right" style="width:14px;height:14px"></i></a>
+      </div>
+      <div class="classroom-grid" id="dashboardRoomGrid"></div>
+
+    </main>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>

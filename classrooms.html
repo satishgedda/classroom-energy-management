@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Classrooms · Classroom Energy Management System</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/responsive.css">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body>
+<div class="app-shell">
+
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-mark"><i data-lucide="zap"></i></div>
+      <div class="brand-text"><div class="brand-name">ECS</div><div class="brand-sub">CLASSROOM ENERGY SYSTEM</div></div>
+    </div>
+    <button class="sidebar-collapse-btn" id="sidebarCollapseBtn"><i data-lucide="chevron-left"></i></button>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">MENU</div>
+      <a class="nav-item" data-page="index.html" href="index.html"><i data-lucide="layout-dashboard"></i><span class="nav-label">Dashboard</span></a>
+      <a class="nav-item" data-page="classrooms.html" href="classrooms.html"><i data-lucide="door-open"></i><span class="nav-label">Classrooms</span></a>
+      <a class="nav-item" data-page="analytics.html" href="analytics.html"><i data-lucide="bar-chart-3"></i><span class="nav-label">Energy Analytics</span></a>
+      <a class="nav-item" data-page="alerts.html" href="alerts.html"><i data-lucide="bell-ring"></i><span class="nav-label">Alerts</span></a>
+      <a class="nav-item" data-page="settings.html" href="settings.html"><i data-lucide="settings"></i><span class="nav-label">Settings</span></a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="status-row"><span class="pulse-dot"></span><span class="status-text">All systems operational</span></div>
+      <div class="user-row"><div class="avatar" data-user-avatar>AD</div><div class="user-meta"><div class="user-name">Admin</div><div class="user-role">System Administrator</div></div></div>
+    </div>
+  </aside>
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+
+  <div class="main">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger" id="hamburgerBtn"><i data-lucide="menu"></i></button>
+        <div class="topbar-title-block"><div class="page-title">Classrooms</div><div class="breadcrumb">ECS <span>/</span> Classrooms</div></div>
+      </div>
+      <div class="topbar-right">
+        <button class="icon-btn"><i data-lucide="search"></i></button>
+        <div class="panel-anchor">
+          <button class="icon-btn" id="notifBtn"><i data-lucide="bell"></i><span class="badge-dot"></span></button>
+          <div class="dropdown-panel" id="notifPanel">
+            <div class="dropdown-head"><h4>Notifications</h4><span>Mark all read</span></div>
+            <div class="dropdown-list">
+              <div class="notif-item"><span class="notif-ico" style="background:var(--red-100);color:var(--red-500)"><i data-lucide="thermometer"></i></span><div class="notif-body"><p>High temperature in A-103</p><span>8 min ago</span></div></div>
+              <div class="notif-item"><span class="notif-ico" style="background:var(--amber-100);color:var(--amber-500)"><i data-lucide="zap"></i></span><div class="notif-body"><p>B-204 energy usage above average</p><span>26 min ago</span></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="status-chip"><span class="pulse-dot" style="background:#116430"></span>All systems operational</div>
+        <div class="topbar-user"><div class="avatar" data-user-avatar>AD</div><div class="topbar-user-meta"><div class="name">Admin</div><div class="role">System Administrator</div></div></div>
+      </div>
+    </header>
+
+    <main class="page">
+      <div class="page-header">
+        <div><h1>Classrooms</h1><p><span id="classroomResultCount">12</span> classrooms across campus · live occupancy and energy status</p></div>
+      </div>
+
+      <div class="filter-bar">
+        <div class="search-input"><i data-lucide="search"></i><input type="text" id="classroomSearch" placeholder="Search classroom or department…"></div>
+        <div class="pill-group">
+          <button class="active" data-filter="all">All</button>
+          <button data-filter="occupied">Occupied</button>
+          <button data-filter="empty">Empty</button>
+          <button data-filter="high">High Energy</button>
+        </div>
+        <select class="select-input" id="classroomSort">
+          <option value="power">Sort by Power</option>
+          <option value="temp">Sort by Temperature</option>
+          <option value="energy">Sort by Energy Usage</option>
+        </select>
+      </div>
+
+      <div class="classroom-grid" id="classroomListGrid"></div>
+
+      <div class="empty-state" id="classroomEmptyState" style="display:none">
+        <div class="empty-ico"><i data-lucide="search-x"></i></div>
+        <h4>No classrooms found</h4>
+        <p>Try a different search term or clear your filters to see all classrooms.</p>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script src="js/classrooms.js"></script>
+</body>
+</html>
