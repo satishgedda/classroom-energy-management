@@ -5,13 +5,19 @@
 (function authGuard(){
   const page = location.pathname.split('/').pop() || 'login.html';
   const loggedIn = localStorage.getItem('ecs_auth') === 'true';
-  if(page !== 'login.html' && !loggedIn){
+  const isAuthPage = page === 'login.html' || page === 'signup.html';
+  if(!isAuthPage && !loggedIn){
     location.href = 'login.html';
   }
 })();
 
 function ecsLogout(){
   localStorage.removeItem('ecs_auth');
+  localStorage.removeItem('ecs_user_name');
+  localStorage.removeItem('ecs_user_email');
+  if(typeof firebase !== 'undefined' && firebase.auth){
+    try { firebase.auth().signOut(); } catch(e){}
+  }
   location.href = 'login.html';
 }
 
@@ -109,7 +115,13 @@ function ecsToast(message, type = 'success'){
 
 /* ---------- User initials avatar ---------- */
 function ecsSetUserMeta(){
-  document.querySelectorAll('[data-user-avatar]').forEach(el => el.textContent = 'AD');
+  const name = localStorage.getItem('ecs_user_name') || 'Admin';
+  const parts = name.trim().split(/\s+/);
+  const initials = parts.length > 1 
+    ? (parts[0][0] + parts[parts.length - 1][0]).toUpperCase()
+    : name.slice(0, 2).toUpperCase();
+  document.querySelectorAll('[data-user-avatar]').forEach(el => el.textContent = initials || 'AD');
+  document.querySelectorAll('.topbar-user-meta .name, .sidebar-footer .user-name').forEach(el => el.textContent = name);
 }
 
 document.addEventListener('DOMContentLoaded', () => {

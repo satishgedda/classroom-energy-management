@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign In · Classroom Energy Management System</title>
+  <title>Sign Up · Classroom Energy Management System</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/auth.css">
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
@@ -92,7 +92,7 @@
     </div>
   </aside>
 
-  <!-- ============ RIGHT PANEL: Sign In Card ============ -->
+  <!-- ============ RIGHT PANEL: Sign Up Card ============ -->
   <main class="auth-form-panel">
     <div class="auth-form-card">
 
@@ -105,31 +105,33 @@
         </div>
       </div>
 
-      <h2>Welcome back</h2>
-      <p class="auth-subheading">Sign in to your ECS dashboard.</p>
+      <h2>Create your ECS account</h2>
+      <p class="auth-subheading">Join the smart classroom energy management platform.</p>
 
       <!-- General Feedback Alert -->
       <div id="generalError" class="auth-alert" role="alert"></div>
 
-      <!-- Google Sign-In Button -->
-      <button type="button" class="btn-google" id="googleSignInBtn">
-        <svg class="google-icon" viewBox="0 0 24 24">
-          <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"/>
-          <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24z"/>
-          <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.99 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/>
-          <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
-        </svg>
-        <span>Continue with Google</span>
-      </button>
+      <!-- Signup Form (Strictly contains ONLY: Full Name, Email, Password, Confirm Password) -->
+      <form id="signupForm" novalidate>
+        
+        <!-- 1. Full Name -->
+        <div class="field-group">
+          <label class="field-label" for="fullName">Full Name</label>
+          <div class="input-wrap">
+            <span class="input-icon"><i data-lucide="user"></i></span>
+            <input 
+              type="text" 
+              id="fullName" 
+              class="input-control" 
+              placeholder="e.g. Satish Gedda" 
+              autocomplete="name" 
+              required
+            >
+          </div>
+          <div id="fullNameError" class="field-error"></div>
+        </div>
 
-      <!-- Divider -->
-      <div class="auth-divider">
-        <span>OR CONTINUE WITH EMAIL</span>
-      </div>
-
-      <!-- Login Form -->
-      <form id="loginForm" novalidate>
-        <!-- Email Input -->
+        <!-- 2. Email Address -->
         <div class="field-group">
           <label class="field-label" for="email">Email Address</label>
           <div class="input-wrap">
@@ -146,7 +148,7 @@
           <div id="emailError" class="field-error"></div>
         </div>
 
-        <!-- Password Input -->
+        <!-- 3. Password -->
         <div class="field-group">
           <label class="field-label" for="password">Password</label>
           <div class="input-wrap">
@@ -155,8 +157,8 @@
               type="password" 
               id="password" 
               class="input-control has-toggle" 
-              placeholder="••••••••" 
-              autocomplete="current-password" 
+              placeholder="Minimum 6 characters" 
+              autocomplete="new-password" 
               required
             >
             <button 
@@ -171,26 +173,42 @@
           <div id="passwordError" class="field-error"></div>
         </div>
 
-        <!-- Options: Remember Me & Forgot Password -->
-        <div class="form-options-row">
-          <label class="checkbox-label">
-            <input type="checkbox" id="remember" checked>
-            <span>Remember me</span>
-          </label>
-          <a href="#" id="forgotPasswordLink" class="forgot-link">Forgot password?</a>
+        <!-- 4. Confirm Password -->
+        <div class="field-group" style="margin-bottom: 24px;">
+          <label class="field-label" for="confirmPassword">Confirm Password</label>
+          <div class="input-wrap">
+            <span class="input-icon"><i data-lucide="lock"></i></span>
+            <input 
+              type="password" 
+              id="confirmPassword" 
+              class="input-control has-toggle" 
+              placeholder="Re-enter your password" 
+              autocomplete="new-password" 
+              required
+            >
+            <button 
+              type="button" 
+              class="password-toggle" 
+              data-target="confirmPassword" 
+              aria-label="Show password"
+            >
+              <i data-lucide="eye"></i>
+            </button>
+          </div>
+          <div id="confirmPasswordError" class="field-error"></div>
         </div>
 
         <!-- Submit Button -->
-        <button type="submit" id="loginSubmitBtn" class="btn-auth-primary">
-          <span>Sign In</span>
+        <button type="submit" id="signupSubmitBtn" class="btn-auth-primary">
+          <span>Create Account</span>
           <i data-lucide="arrow-right"></i>
         </button>
       </form>
 
-      <!-- Switch to Sign Up -->
+      <!-- Switch to Sign In -->
       <div class="auth-switch-footer">
-        Don't have an account?
-        <a href="signup.html" class="auth-switch-link">Create an account</a>
+        Already have an account?
+        <a href="login.html" class="auth-switch-link">Sign In</a>
       </div>
 
     </div>
