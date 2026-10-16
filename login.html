@@ -1,23 +1,29 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Sign In · Classroom Energy Management System</title>
+
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/auth.css">
+
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-  <!-- Firebase SDK (v10 compat for browser static sites) -->
+
+  <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
 </head>
+
 <body class="auth-page">
 
-  <!-- ============ LEFT PANEL: Branded ECS IoT Visual ============ -->
+  <!-- LEFT PANEL -->
   <aside class="auth-visual-panel">
     <div class="bg-grid"></div>
 
-    <!-- Top Branding -->
     <div class="auth-brand-badge">
       <div class="brand-mark"><i data-lucide="zap"></i></div>
       <div>
@@ -26,7 +32,6 @@
       </div>
     </div>
 
-    <!-- Main Visual Content -->
     <div class="auth-visual-content">
       <h1 class="auth-headline">
         Smart Energy.
@@ -34,10 +39,11 @@
       </h1>
 
       <p class="auth-description">
-        Monitor classroom energy, occupancy and environmental conditions through an intelligent energy management platform.
+        Monitor classroom energy, occupancy and environmental
+        conditions through an intelligent energy management platform.
       </p>
 
-      <!-- Abstract IoT Energy Nodes Visualization -->
+      <!-- IoT Visual -->
       <div class="iot-nodes-canvas" aria-hidden="true">
         <div class="node-line line-1"></div>
         <div class="node-line line-2"></div>
@@ -47,34 +53,40 @@
           <span class="pulse-dot"></span>
           <span>Room A-101 • 24.2°C</span>
         </div>
+
         <div class="iot-node n2">
           <span class="pulse-dot"></span>
           <span>Gateway #01 • Online</span>
         </div>
+
         <div class="iot-node n3">
           <span class="pulse-dot"></span>
           <span>HVAC Eco Mode</span>
         </div>
+
         <div class="iot-node n4">
           <span class="pulse-dot"></span>
           <span>Occupancy Active</span>
         </div>
       </div>
 
-      <!-- Feature Highlights -->
+      <!-- Features -->
       <div class="auth-features">
         <div class="feature-item">
           <span class="feature-icon"><i data-lucide="check"></i></span>
           <span>Real-time monitoring</span>
         </div>
+
         <div class="feature-item">
           <span class="feature-icon"><i data-lucide="check"></i></span>
           <span>Smart automation</span>
         </div>
+
         <div class="feature-item">
           <span class="feature-icon"><i data-lucide="check"></i></span>
           <span>Energy analytics</span>
         </div>
+
         <div class="feature-item">
           <span class="feature-icon"><i data-lucide="check"></i></span>
           <span>Intelligent alerts</span>
@@ -82,7 +94,7 @@
       </div>
     </div>
 
-    <!-- Footer Status -->
+    <!-- Footer -->
     <div class="auth-visual-footer">
       <div class="network-badge">
         <span class="live-dot"></span>
@@ -92,11 +104,11 @@
     </div>
   </aside>
 
-  <!-- ============ RIGHT PANEL: Sign In Card ============ -->
+  <!-- RIGHT PANEL -->
   <main class="auth-form-panel">
     <div class="auth-form-card">
 
-      <!-- Mobile-only logo header -->
+      <!-- Mobile Logo -->
       <div class="mobile-brand-header">
         <div class="brand-mark"><i data-lucide="zap"></i></div>
         <div>
@@ -108,12 +120,17 @@
       <h2>Welcome back</h2>
       <p class="auth-subheading">Sign in to your ECS dashboard.</p>
 
-      <!-- General Feedback Alert -->
-      <div id="generalError" class="auth-alert" role="alert"></div>
+      <!-- Feedback -->
+      <div
+        id="generalError"
+        class="auth-alert"
+        role="alert"
+        aria-live="polite"
+      ></div>
 
-      <!-- Google Sign-In Button -->
+      <!-- Google Sign-In -->
       <button type="button" class="btn-google" id="googleSignInBtn">
-        <svg class="google-icon" viewBox="0 0 24 24">
+        <svg class="google-icon" viewBox="0 0 24 24" aria-hidden="true">
           <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"/>
           <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24z"/>
           <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.99 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/>
@@ -129,75 +146,93 @@
 
       <!-- Login Form -->
       <form id="loginForm" novalidate>
-        <!-- Email Input -->
+
         <div class="field-group">
           <label class="field-label" for="email">Email Address</label>
+
           <div class="input-wrap">
             <span class="input-icon"><i data-lucide="mail"></i></span>
-            <input 
-              type="email" 
-              id="email" 
-              class="input-control" 
-              placeholder="name@college.edu" 
-              autocomplete="email" 
+
+            <input
+              type="email"
+              id="email"
+              class="input-control"
+              placeholder="name@college.edu"
+              autocomplete="email"
               required
             >
           </div>
+
           <div id="emailError" class="field-error"></div>
         </div>
 
-        <!-- Password Input -->
         <div class="field-group">
           <label class="field-label" for="password">Password</label>
+
           <div class="input-wrap">
             <span class="input-icon"><i data-lucide="lock"></i></span>
-            <input 
-              type="password" 
-              id="password" 
-              class="input-control has-toggle" 
-              placeholder="••••••••" 
-              autocomplete="current-password" 
+
+            <input
+              type="password"
+              id="password"
+              class="input-control has-toggle"
+              placeholder="••••••••"
+              autocomplete="current-password"
               required
             >
-            <button 
-              type="button" 
-              class="password-toggle" 
-              data-target="password" 
+
+            <button
+              type="button"
+              class="password-toggle"
+              data-target="password"
               aria-label="Show password"
             >
               <i data-lucide="eye"></i>
             </button>
           </div>
+
           <div id="passwordError" class="field-error"></div>
         </div>
 
-        <!-- Options: Remember Me & Forgot Password -->
+        <!-- Remember Me and Forgot Password -->
         <div class="form-options-row">
           <label class="checkbox-label">
             <input type="checkbox" id="remember" checked>
             <span>Remember me</span>
           </label>
-          <a href="#" id="forgotPasswordLink" class="forgot-link">Forgot password?</a>
+
+          <a href="#" id="forgotPasswordLink" class="forgot-link">
+            Forgot password?
+          </a>
         </div>
 
-        <!-- Submit Button -->
-        <button type="submit" id="loginSubmitBtn" class="btn-auth-primary">
+        <!-- Submit -->
+        <button
+          type="submit"
+          id="loginSubmitBtn"
+          class="btn-auth-primary"
+        >
           <span>Sign In</span>
           <i data-lucide="arrow-right"></i>
         </button>
+
       </form>
 
-      <!-- Switch to Sign Up -->
+      <!-- Sign Up Link -->
       <div class="auth-switch-footer">
         Don't have an account?
-        <a href="signup.html" class="auth-switch-link">Create an account</a>
+        <a href="signup.html" class="auth-switch-link">
+          Create an account
+        </a>
       </div>
 
     </div>
   </main>
 
+  <!-- Application Scripts -->
   <script src="js/firebase-config.js"></script>
   <script src="js/auth.js"></script>
   <script src="js/app.js"></script>
+
 </body>
 </html>
