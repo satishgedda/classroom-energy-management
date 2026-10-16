@@ -1,32 +1,40 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Sign Up · Classroom Energy Management System</title>
+
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/auth.css">
+
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-  <!-- Firebase SDK (v10 compat for browser static sites) -->
+
+  <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
 </head>
+
 <body class="auth-page">
 
-  <!-- ============ LEFT PANEL: Branded ECS IoT Visual ============ -->
+  <!-- LEFT PANEL -->
   <aside class="auth-visual-panel">
     <div class="bg-grid"></div>
 
-    <!-- Top Branding -->
     <div class="auth-brand-badge">
-      <div class="brand-mark"><i data-lucide="zap"></i></div>
+      <div class="brand-mark">
+        <i data-lucide="zap"></i>
+      </div>
+
       <div>
         <div class="brand-title">ECS</div>
         <div class="brand-subtitle">CLASSROOM ENERGY SYSTEM</div>
       </div>
     </div>
 
-    <!-- Main Visual Content -->
     <div class="auth-visual-content">
       <h1 class="auth-headline">
         Smart Energy.
@@ -34,10 +42,11 @@
       </h1>
 
       <p class="auth-description">
-        Monitor classroom energy, occupancy and environmental conditions through an intelligent energy management platform.
+        Monitor classroom energy, occupancy and environmental
+        conditions through an intelligent energy management platform.
       </p>
 
-      <!-- Abstract IoT Energy Nodes Visualization -->
+      <!-- IoT Visual -->
       <div class="iot-nodes-canvas" aria-hidden="true">
         <div class="node-line line-1"></div>
         <div class="node-line line-2"></div>
@@ -47,58 +56,76 @@
           <span class="pulse-dot"></span>
           <span>Room A-101 • 24.2°C</span>
         </div>
+
         <div class="iot-node n2">
           <span class="pulse-dot"></span>
           <span>Gateway #01 • Online</span>
         </div>
+
         <div class="iot-node n3">
           <span class="pulse-dot"></span>
           <span>HVAC Eco Mode</span>
         </div>
+
         <div class="iot-node n4">
           <span class="pulse-dot"></span>
           <span>Occupancy Active</span>
         </div>
       </div>
 
-      <!-- Feature Highlights -->
+      <!-- Features -->
       <div class="auth-features">
         <div class="feature-item">
-          <span class="feature-icon"><i data-lucide="check"></i></span>
+          <span class="feature-icon">
+            <i data-lucide="check"></i>
+          </span>
           <span>Real-time monitoring</span>
         </div>
+
         <div class="feature-item">
-          <span class="feature-icon"><i data-lucide="check"></i></span>
+          <span class="feature-icon">
+            <i data-lucide="check"></i>
+          </span>
           <span>Smart automation</span>
         </div>
+
         <div class="feature-item">
-          <span class="feature-icon"><i data-lucide="check"></i></span>
+          <span class="feature-icon">
+            <i data-lucide="check"></i>
+          </span>
           <span>Energy analytics</span>
         </div>
+
         <div class="feature-item">
-          <span class="feature-icon"><i data-lucide="check"></i></span>
+          <span class="feature-icon">
+            <i data-lucide="check"></i>
+          </span>
           <span>Intelligent alerts</span>
         </div>
       </div>
     </div>
 
-    <!-- Footer Status -->
+    <!-- Footer -->
     <div class="auth-visual-footer">
       <div class="network-badge">
         <span class="live-dot"></span>
         <span>Live IoT Network Active</span>
       </div>
+
       <div>12 Classrooms Connected</div>
     </div>
   </aside>
 
-  <!-- ============ RIGHT PANEL: Sign Up Card ============ -->
+  <!-- RIGHT PANEL -->
   <main class="auth-form-panel">
     <div class="auth-form-card">
 
-      <!-- Mobile-only logo header -->
+      <!-- Mobile Logo -->
       <div class="mobile-brand-header">
-        <div class="brand-mark"><i data-lucide="zap"></i></div>
+        <div class="brand-mark">
+          <i data-lucide="zap"></i>
+        </div>
+
         <div>
           <div class="title">ECS</div>
           <div class="subtitle">CLASSROOM ENERGY SYSTEM</div>
@@ -106,116 +133,163 @@
       </div>
 
       <h2>Create your ECS account</h2>
-      <p class="auth-subheading">Join the smart classroom energy management platform.</p>
 
-      <!-- General Feedback Alert -->
-      <div id="generalError" class="auth-alert" role="alert"></div>
+      <p class="auth-subheading">
+        Join the smart classroom energy management platform.
+      </p>
 
-      <!-- Signup Form (Strictly contains ONLY: Full Name, Email, Password, Confirm Password) -->
+      <!-- Feedback -->
+      <div
+        id="generalError"
+        class="auth-alert"
+        role="alert"
+        aria-live="polite"
+      ></div>
+
+      <!-- Signup Form -->
       <form id="signupForm" novalidate>
-        
-        <!-- 1. Full Name -->
+
+        <!-- Full Name -->
         <div class="field-group">
-          <label class="field-label" for="fullName">Full Name</label>
+          <label class="field-label" for="fullName">
+            Full Name
+          </label>
+
           <div class="input-wrap">
-            <span class="input-icon"><i data-lucide="user"></i></span>
-            <input 
-              type="text" 
-              id="fullName" 
-              class="input-control" 
-              placeholder="e.g. Satish Gedda" 
-              autocomplete="name" 
+            <span class="input-icon">
+              <i data-lucide="user"></i>
+            </span>
+
+            <input
+              type="text"
+              id="fullName"
+              class="input-control"
+              placeholder="e.g. Satish Gedda"
+              autocomplete="name"
               required
             >
           </div>
+
           <div id="fullNameError" class="field-error"></div>
         </div>
 
-        <!-- 2. Email Address -->
+        <!-- Email -->
         <div class="field-group">
-          <label class="field-label" for="email">Email Address</label>
+          <label class="field-label" for="email">
+            Email Address
+          </label>
+
           <div class="input-wrap">
-            <span class="input-icon"><i data-lucide="mail"></i></span>
-            <input 
-              type="email" 
-              id="email" 
-              class="input-control" 
-              placeholder="name@college.edu" 
-              autocomplete="email" 
+            <span class="input-icon">
+              <i data-lucide="mail"></i>
+            </span>
+
+            <input
+              type="email"
+              id="email"
+              class="input-control"
+              placeholder="name@college.edu"
+              autocomplete="email"
               required
             >
           </div>
+
           <div id="emailError" class="field-error"></div>
         </div>
 
-        <!-- 3. Password -->
+        <!-- Password -->
         <div class="field-group">
-          <label class="field-label" for="password">Password</label>
+          <label class="field-label" for="password">
+            Password
+          </label>
+
           <div class="input-wrap">
-            <span class="input-icon"><i data-lucide="lock"></i></span>
-            <input 
-              type="password" 
-              id="password" 
-              class="input-control has-toggle" 
-              placeholder="Minimum 6 characters" 
-              autocomplete="new-password" 
+            <span class="input-icon">
+              <i data-lucide="lock"></i>
+            </span>
+
+            <input
+              type="password"
+              id="password"
+              class="input-control has-toggle"
+              placeholder="Minimum 6 characters"
+              autocomplete="new-password"
               required
             >
-            <button 
-              type="button" 
-              class="password-toggle" 
-              data-target="password" 
+
+            <button
+              type="button"
+              class="password-toggle"
+              data-target="password"
               aria-label="Show password"
             >
               <i data-lucide="eye"></i>
             </button>
           </div>
+
           <div id="passwordError" class="field-error"></div>
         </div>
 
-        <!-- 4. Confirm Password -->
+        <!-- Confirm Password -->
         <div class="field-group" style="margin-bottom: 24px;">
-          <label class="field-label" for="confirmPassword">Confirm Password</label>
+          <label class="field-label" for="confirmPassword">
+            Confirm Password
+          </label>
+
           <div class="input-wrap">
-            <span class="input-icon"><i data-lucide="lock"></i></span>
-            <input 
-              type="password" 
-              id="confirmPassword" 
-              class="input-control has-toggle" 
-              placeholder="Re-enter your password" 
-              autocomplete="new-password" 
+            <span class="input-icon">
+              <i data-lucide="lock"></i>
+            </span>
+
+            <input
+              type="password"
+              id="confirmPassword"
+              class="input-control has-toggle"
+              placeholder="Re-enter your password"
+              autocomplete="new-password"
               required
             >
-            <button 
-              type="button" 
-              class="password-toggle" 
-              data-target="confirmPassword" 
+
+            <button
+              type="button"
+              class="password-toggle"
+              data-target="confirmPassword"
               aria-label="Show password"
             >
               <i data-lucide="eye"></i>
             </button>
           </div>
+
           <div id="confirmPasswordError" class="field-error"></div>
         </div>
 
-        <!-- Submit Button -->
-        <button type="submit" id="signupSubmitBtn" class="btn-auth-primary">
+        <!-- Submit -->
+        <button
+          type="submit"
+          id="signupSubmitBtn"
+          class="btn-auth-primary"
+        >
           <span>Create Account</span>
           <i data-lucide="arrow-right"></i>
         </button>
+
       </form>
 
-      <!-- Switch to Sign In -->
+      <!-- Sign In Link -->
       <div class="auth-switch-footer">
         Already have an account?
-        <a href="login.html" class="auth-switch-link">Sign In</a>
+        <a href="login.html" class="auth-switch-link">
+          Sign In
+        </a>
       </div>
 
     </div>
   </main>
 
+  <!-- Application Scripts: Keep this order -->
   <script src="js/firebase-config.js"></script>
   <script src="js/auth.js"></script>
   <script src="js/app.js"></script>
+
 </body>
 </html>
